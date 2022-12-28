@@ -4,147 +4,77 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>30 Joe Close - 3D Viewer</title>
     <script src="js/aframe-master-v1.3.0.min.js"></script>
-	  <script src="js/aframe-environment-component.min.js"></script>
-	  <script src="js/extended-wasd-controls.js"></script>
-
-    <style>
-
-     
-      
-      </style>
+    <script src="js/aframe-environment-component.min.js"></script>
+    <script src="js/extended-wasd-controls.js"></script>
   </head>
   <body>
-
     <div class="mainUI" id="uiDiv" oncontextmenu="return false;">
-
       <!-- top-left -->
-      <div class="regionUI skyColor" style="top: 10px; left: 10px;" oncontextmenu="return false;">
+      <div
+        class="regionUI skyColor"
+        style="top: 10px; left: 10px"
+        oncontextmenu="return false;"
+      >
         <div class="buttonUI">
-            <img src="images/buttons/red/up.png" id="buttonMoveUp" /><br/>
-            <img src="images/buttons/red/down.png" id="buttonMoveDown" />
-          </div>
+          <img src="images/buttons/red/up.png" id="buttonMoveUp" /><br />
+          <img src="images/buttons/red/down.png" id="buttonMoveDown" />
+        </div>
       </div>
-    
+
       <!-- top-right -->
-      <div class="regionUI" style="top: 10px; right: 10px;">
-      </div>
-    
+      <div class="regionUI" style="top: 10px; right: 10px"></div>
+
       <!-- bottom-left -->
-      <div class="regionUI" style="bottom: 10px; left: 10px;">
-      </div>
-    
+      <div class="regionUI" style="bottom: 10px; left: 10px"></div>
+
       <!-- bottom-right -->
-      <div class="regionUI baseColor" style="bottom: 10px; right: 10px;">
+      <div class="regionUI baseColor" style="bottom: 10px; right: 10px">
         <div class="buttonUI">
-            <img src="images/buttons/red/left.png" id="buttonMoveLeft" />
-          </div>
-          <div class="buttonUI">
-            <img src="images/buttons/red/up.png" id="buttonMoveForward" /><br/>
-            <img src="images/buttons/red/down.png" id="buttonMoveBackward" />
-          </div>
-          <div class="buttonUI">
-            <img src="images/buttons/red/right.png" id="buttonMoveRight" />
-          </div>
-      </div>    
+          <img src="images/buttons/red/left.png" id="buttonMoveLeft" />
+        </div>
+        <div class="buttonUI">
+          <img src="images/buttons/red/up.png" id="buttonMoveForward" /><br />
+          <img src="images/buttons/red/down.png" id="buttonMoveBackward" />
+        </div>
+        <div class="buttonUI">
+          <img src="images/buttons/red/right.png" id="buttonMoveRight" />
+        </div>
+      </div>
     </div>
 
-    <script>
+    <a-scene
+      environment="shadow: true;"
+      keyboard-shortcuts="enterVR: false;"
+      vr-mode-ui="enabled: false;"
+      screen-controls
+    >
+      <a-assets>
+        <a-asset-item
+          id="ash"
+          src="models/30JoeClose/30JoeClose.gltf"
+        ></a-asset-item>
+      </a-assets>
 
-      function haltEvent(event)
-      {
-        event.preventDefault && event.preventDefault();
-        event.stopPropagation && event.stopPropagation();
-        event.cancelBubble = true;
-        event.returnValue = false;
-        return false;
-      }
-    
-      // prevent right-click menus from appearing
-      document.addEventListener("contextmenu", haltEvent );
-      // more attempts to prevent right-click menus from appearing -- avoid; they block touchscreen/iPad controls
-      // document.addEventListener("touchmove", haltEvent );
-      // document.addEventListener("touchcancel", haltEvent );
-      
-      // add events for both touch and mouse controls
-      function addButtonEventListeners( buttonElementID, startFunction, endFunction )
-      {
-        let element = document.getElementById( buttonElementID );
-        element.addEventListener('touchstart', startFunction);
-        element.addEventListener('mousedown',  startFunction);
-        element.addEventListener('touchend',   endFunction);
-        element.addEventListener('mouseup',    endFunction);
-      }
-    
-      function associateMovementControls( buttonElementID, component, keyName )
-      {
-        addButtonEventListeners(buttonElementID,
-          function(event) 
-          { 
-            component.registerKeyDown( keyName );
-            return haltEvent(event);
-          },
-          function(event) 
-          { 
-            component.registerKeyUp( keyName );
-            return haltEvent(event);
-          }
-        );
-      }
-    
-      // need to run javascript code after a-scene entities and components are loaded
-      AFRAME.registerComponent('screen-controls', 
-      {
-        init: function () 
-        {
-            let component = document.getElementById("camera").components["extended-wasd-controls"];
-    
-          associateMovementControls( "buttonMoveForward",  component, component.data.moveForwardKey );
-          associateMovementControls( "buttonMoveBackward", component, component.data.moveBackwardKey );
-          associateMovementControls( "buttonMoveLeft",     component, component.data.moveLeftKey );
-          associateMovementControls( "buttonMoveRight",    component, component.data.moveRightKey );
-          associateMovementControls( "buttonMoveUp",       component, component.data.moveUpKey );
-          associateMovementControls( "buttonMoveDown",     component, component.data.moveDownKey );
-          },
-    
-          tick: function(time, deltaTime)
-          {
-      
-          }
-      });
-    
-    
-    </script>
+      <a-entity
+        gltf-model="#ash"
+        position="1 1 1"
+        rotation="0 0 0"
+        scale="0.01 0.01 0.01"
+      >
+      </a-entity>
 
-
-<a-scene 
-	environment="shadow: true;" 
-	keyboard-shortcuts="enterVR: false;" 
-	vr-mode-ui="enabled: false;"
-	screen-controls>
-
-  <a-assets>
-		<a-asset-item id="ash" src="models/30JoeClose/30JoeClose.gltf"></a-asset-item>
-	</a-assets>
-	
-	<a-entity gltf-model="#ash" 
-		position = "1 1 1"
-		rotation="0 0 0"
-		scale="0.01 0.01 0.01">
-	</a-entity>
-	
-	<!-- adding in look controls; automatically sets turnEnabled/lookEnabled to false  -->
-	<a-entity id="camera" camera look-controls
-		position="0 1.6 0"
-		extended-wasd-controls="flyEnabled: true;">
-	</a-entity>
-	
-</a-scene>
-
-    <div id="app"></div>
+      <!-- adding in look controls; automatically sets turnEnabled/lookEnabled to false  -->
+      <a-entity
+        id="camera"
+        camera
+        look-controls
+        position="0 1.6 0"
+        extended-wasd-controls="flyEnabled: true;"
+      >
+      </a-entity>
+    </a-scene>
     <script type="module" src="/main.js"></script>
-
-
   </body>
 </html>
