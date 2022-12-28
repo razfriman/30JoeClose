@@ -2,76 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>30 Joe Close - 3D Viewer</title>
-    <script src="js/aframe-master-v1.3.0.min.js"></script>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="js/aframe-environment-component.min.js"></script>
     <script src="js/extended-wasd-controls.js"></script>
   </head>
   <body>
-    <div class="mainUI" id="uiDiv" oncontextmenu="return false;">
-      <!-- top-left -->
-      <div
-        class="regionUI skyColor"
-        style="top: 10px; left: 10px"
-        oncontextmenu="return false;"
-      >
-        <div class="buttonUI">
-          <img src="images/buttons/red/up.png" id="buttonMoveUp" /><br />
-          <img src="images/buttons/red/down.png" id="buttonMoveDown" />
-        </div>
-      </div>
-
-      <!-- top-right -->
-      <div class="regionUI" style="top: 10px; right: 10px"></div>
-
-      <!-- bottom-left -->
-      <div class="regionUI" style="bottom: 10px; left: 10px"></div>
-
-      <!-- bottom-right -->
-      <div class="regionUI baseColor" style="bottom: 10px; right: 10px">
-        <div class="buttonUI">
-          <img src="images/buttons/red/left.png" id="buttonMoveLeft" />
-        </div>
-        <div class="buttonUI">
-          <img src="images/buttons/red/up.png" id="buttonMoveForward" /><br />
-          <img src="images/buttons/red/down.png" id="buttonMoveBackward" />
-        </div>
-        <div class="buttonUI">
-          <img src="images/buttons/red/right.png" id="buttonMoveRight" />
-        </div>
-      </div>
-    </div>
-
-    <a-scene
-      environment="shadow: true;"
-      keyboard-shortcuts="enterVR: false;"
-      vr-mode-ui="enabled: false;"
-      screen-controls
-    >
+    <a-scene>
       <a-assets>
         <a-asset-item
-          id="ash"
+          id="30JoeClose"
           src="models/30JoeClose/30JoeClose.gltf"
         ></a-asset-item>
       </a-assets>
 
+      <a-entity environment></a-entity>
+
       <a-entity
-        gltf-model="#ash"
-        position="1 1 1"
-        rotation="0 0 0"
+        gltf-model="#30JoeClose"
+        position="10 0.1 -25"
+        rotation="0 -90 0"
         scale="0.01 0.01 0.01"
       >
       </a-entity>
 
-      <!-- adding in look controls; automatically sets turnEnabled/lookEnabled to false  -->
       <a-entity
         id="camera"
         camera
         look-controls
-        position="0 1.6 0"
-        extended-wasd-controls="flyEnabled: true;"
+        position="0 5 0"
+        extended-wasd-controls="flyEnabled: true; turnEnabled: true; mouseEnabled: true; lookEnabled: true; maxLookAngle: 60;"
       >
       </a-entity>
     </a-scene>
