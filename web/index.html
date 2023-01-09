@@ -9,6 +9,29 @@
     <script src="js/extended-wasd-controls.js"></script>
   </head>
   <body>
+    <div class="mainUI">
+      <div class="regionUI">
+        <div>W: Forward</div>
+        <div>A: Left</div>
+        <div>S: Backward</div>
+        <div>D: Right</div>
+        <div>R: Up</div>
+        <div>F: Down</div>
+        <div>Mouse Drag: Look Around</div>
+      </div>
+
+      <div class="regionUI" style="top: 10px; right: 10px">
+        <!-- <div>top right</div> -->
+      </div>
+
+      <div class="regionUI" style="bottom: 10px; left: 10px">
+        <!-- <div>bottom-left</div> -->
+      </div>
+
+      <div class="regionUI baseColor" style="bottom: 10px; right: 10px">
+        <!-- <div>bottom right</div> -->
+      </div>
+    </div>
     <a-scene
       vr-mode-ui="enabled: false;"
       keyboard-shortcuts="enterVR: false;"
