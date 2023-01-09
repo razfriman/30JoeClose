@@ -11,10 +11,13 @@ document.addEventListener("contextmenu", haltEvent);
 document.addEventListener("touchmove", haltEvent);
 document.addEventListener("touchcancel", haltEvent);
 
+const scene = document.querySelector("#scene");
+const camera = document.querySelector("#camera");
+console.log(camera.getAttribute("extended-wasd-controls"));
+console.log(camera.setAttribute("extended-wasd-controls", 'flyEnabled: true; turnEnabled: true; lookEnabled: true; maxLookAngle: 60;'));
+
 if (/Android|iPhone/i.test(navigator.userAgent)) {
-  Array.from(document.getElementsByClassName("desktop")).forEach((e) => {
-    e.remove();
-  });
+  
   AFRAME.registerComponent("screen-controls", {
     init: function () {
       this.component =
@@ -26,14 +29,19 @@ if (/Android|iPhone/i.test(navigator.userAgent)) {
     tick: function (time, deltaTime) {
       this.component.movePercent.x = this.joystick1.value.x;
       this.component.movePercent.z = -this.joystick1.value.y;
-      this.component.rotatePercent.x = -this.joystick2.value.y;
+      this.component.movePercent.y = -this.joystick2.value.y;
       this.component.rotatePercent.y = -this.joystick2.value.x;
     },
   });
+  Array.from(document.getElementsByClassName("desktop")).forEach((e) => {
+    e.remove();
+  });
+  console.log(camera.setAttribute("extended-wasd-controls", 'flyEnabled: true; turnEnabled: true; lookEnabled: true; maxLookAngle: 60; inputType: joystick;'));
 } else {
   Array.from(document.getElementsByClassName("mobile")).forEach((e) => {
     e.remove();
   });
+  console.log(camera.setAttribute("extended-wasd-controls", 'flyEnabled: true; turnEnabled: true; lookEnabled: true; maxLookAngle: 60;'));
 }
 
 class Joystick {
