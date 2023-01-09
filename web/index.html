@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="mainUI">
-      <div class="regionUI">
+      <div class="regionUI desktop">
         <div>W: Forward</div>
         <div>A: Left</div>
         <div>S: Backward</div>
@@ -20,16 +20,40 @@
         <div>Mouse Drag: Look Around</div>
       </div>
 
-      <div class="regionUI" style="top: 10px; right: 10px">
-        <!-- <div>top right</div> -->
-      </div>
-
       <div class="regionUI" style="bottom: 10px; left: 10px">
-        <!-- <div>bottom-left</div> -->
+        <div class="buttonUI" style="width: 128px; opacity: 0.8">
+          <img src="images/joystick-base.png" />
+          <div
+            id="stick1"
+            style="
+              position: absolute;
+              left: 32px;
+              top: 32px;
+              transition: all 0.2s ease 0s;
+              transform: translate3d(0px, 0px, 0px);
+            "
+          >
+            <img src="images/joystick-red.png" />
+          </div>
+        </div>
       </div>
 
-      <div class="regionUI baseColor" style="bottom: 10px; right: 10px">
-        <!-- <div>bottom right</div> -->
+      <div class="regionUI" style="bottom: 10px; right: 10px">
+        <div class="buttonUI" style="width: 128px; opacity: 0.8">
+          <img src="images/joystick-base.png" />
+          <div
+            id="stick2"
+            style="
+              position: absolute;
+              left: 32px;
+              top: 32px;
+              transition: all 0.2s ease 0s;
+              transform: translate3d(0px, 0px, 0px);
+            "
+          >
+            <img src="images/joystick-blue.png" />
+          </div>
+        </div>
       </div>
     </div>
     <a-scene
